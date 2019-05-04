@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font  -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Css -->
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <title>Kasir</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="container-fluid bg-blue text-light py-5">
+        <div class="container">
+            <h1 class="display-4">Kasir Toko Buah</h1>
+            <p class="lead">Aplikasi Managemen Toko Buah Lorem ipsum dolor sit, amet consectetur.</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container py-3">
+        <!-- List Data Buah -->
+        <div class="row  col-12">
+            <div class="card shadow w-100">
+                <div class="card-header">
+                    <div class="justify-content-between d-flex">
+                        <div>
+                            <span class="py-3 font-weight-bold mr-2">Data Buah </span>
+                            <i id="sort" onclick="sortData()" class="fa fa-angle-up" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <form id="form-search" class="form-inline my-2 my-lg-0" action="#">
+                                <input id="inputSearch" class="form-control form-control-sm mr-sm-2" type="search"
+                                    placeholder="Search">
+                                <button class="btn btn-sm btn-outline-info my-2 my-sm-0"
+                                    onclick="searchBuah()">Search</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Foto</th>
+                                <th>Nama</th>
+                                <th>Harga per Kilo</th>
+                                <th>Stok</th>
+                            </tr>
+                        </thead>
+                        <tbody id="list-buah">
+                            <!-- List buah  -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- <hr class="horizontal-divider"> -->
+
+        <div class="row mt-3">
+
+            <!-- Form beli buah -->
+            <div class="col-6">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <span class="py-3 font-weight-bold">Form Pembelian Buah</span>
+                    </div>
+                    <div class="card-body">
+                        <form id="formBeli" action="#">
+                            <fieldset>
+                                <!-- <legend>Form Pembelian Buah</legend> -->
+                                <div class="form-group">
+                                    <label for="namaBuah">Nama Buah</label>
+                                    <select class="form-control form-control-sm " onchange="rubahHarga()" id="namaBuah">
+                                        <option value="" disabled selected>...</option>
+                                        <option value="Apel">Apel</option>
+                                        <option value="Durian">Durian</option>
+                                        <option value="Jeruk">Jeruk</option>
+                                        <option value="Manggis">Manggis</option>
+                                        <option value="Semangka">Semangka</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jmlBuah">Jumlah</label>
+                                    <input class="form-control form-control-sm " id="jmlBuah" onkeyup="rubahHarga()"
+                                        min="1" max="100" type="number" placeholder="Kg">
+                                </div>
+                                <div class="form-group">
+                                    <label for="kualitas">Kualitas</label>
+                                    <select class="form-control form-control-sm " onchange="rubahHarga()" id="kualitas">
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="uang">Tunai</label>
+                                    <input class="form-control form-control-sm " id="uang" onkeyup="rubahHarga()"
+                                        type="number" placeholder="Uang">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hargaSatuan">Harga PerKg</label>
+                                    <input class="form-control form-control-sm " disabled id="hargaSatuan" type="text"
+                                        placeholder="Rp 0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="diskon">Diskon</label>
+                                    <input class="form-control form-control-sm " disabled id="diskon" type="text"
+                                        placeholder="Rp 0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hargaTotal">Total</label>
+                                    <input class="form-control form-control-sm " disabled id="hargaTotal" type="text"
+                                        placeholder="Rp 0">
+                                </div>
+                                <div class="justify-content-between d-flex">
+                                    <input class="btn btn-sm btn-primary w-50 mr-2" onclick="beliBuah()" id="submit"
+                                        value="Beli">
+                                    <input class="btn btn-sm btn-primary w-50 ml-2" id="reset" type="reset"
+                                        value="Batal">
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row col-6">
+                <!-- Form manage buah -->
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <span class="py-3 font-weight-bold">Manage Persediaan</span>
+                        </div>
+                        <div class="card-body">
+                            <form action="#">
+                                <div class="text-center" style="height: 125px">
+                                    <img id="gambarBuah"
+                                        src="https://www.artistictile.com/media1/catalog/product/cache/1/thumbnail/800x/9df78eab33525d08d6e5fb8d27136e95/p/_/p_Solid_Grey_PSOLGRYM24.jpg"
+                                        class="rounded" width="30%" height="125px" alt="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="urlGambar">Url Gambar</label>
+                                    <input class="form-control form-control-sm" onkeyup="rubahGambar()" id="urlGambar"
+                                        type="text" placeholder="https://">
+                                </div>
+                                <div class="form-group">
+                                    <label for="namaStokBuah">Nama Buah</label>
+                                    <select onchange="rubahStok()" class="form-control form-control-sm "
+                                        id="namaStokBuah">
+                                        <option value="" disabled selected>...</option>
+                                        <option value="Apel">Apel</option>
+                                        <option value="Durian">Durian</option>
+                                        <option value="Jeruk">Jeruk</option>
+                                        <option value="Manggis">Manggis</option>
+                                        <option value="Semangka">Semangka</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jmlStokBuah">Stok</label>
+                                    <input class="form-control form-control-sm " id="jmlStokBuah" min="1" max="100"
+                                        type="number" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="hargastok">Harga perKilo</label>
+                                    <input class="form-control form-control-sm " id="hargaStok" min="1" max="100"
+                                        type="number" placeholder="Rp 0">
+                                </div>
+                                <div class="justify-content-between d-flex">
+                                    <input class="btn btn-sm btn-primary w-50 mr-2" id="save" value="Simpan"
+                                        onclick="simpanData()">
+                                    <input class="btn btn-sm btn-primary w-50 ml-2" id="reset" type="reset"
+                                        value="Batal">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table riwayat -->
+                <div class="col-12">
+                    <div class="card shadow">
+                        <div class="card-header">
+                            <span class="py-3 font-weight-bold mr-2">Riwayat Transaksi</span>
+                            <!-- <i id="sortBuah" class="fa fa-angle-up" aria-hidden="true"></i> -->
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped ">
+                                <thead>
+                                    <tr>
+                                        <!-- <th>#</th> -->
+                                        <th>Buah</th>
+                                        <th>Jumlah</th>
+                                        <th>Kualitas</th>
+                                        <th>Harga</th>
+                                        <th>Tanggal</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="list-transaksi">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Js  -->
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
